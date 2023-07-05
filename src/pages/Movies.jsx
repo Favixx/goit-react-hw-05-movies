@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import { searchMovies } from 'service/api';
-
+import SearchForm from '../components/SearchForn/SearchForm'
+import MovieList from 'components/MovieList/MovieList';
 const Movies = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get('query');
     const [inputValue, setInputValue] = useState(query || '');
     const [dataSearch, setDataSearch] = useState([]);
     const location = useLocation();
-
-    const handleChange = event => {
-        const value = event.target.value;
-        setInputValue(value);
-    };
-
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -24,53 +19,22 @@ const Movies = () => {
     useEffect(() => {
         const getMovie = async () => {
             try {
-                const response = await searchMovies(query)
-                setDataSearch(response)
+                const response = await searchMovies(query);
+                setDataSearch(response);
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
         };
         query && getMovie();
     }, [query]);
 
     return (
-        <>
-            <form onSubmit={handleSubmit} className='my-3'>
-                <input value={inputValue} onChange={handleChange} type="text" className='outline outline-black outline-1 mx-1 px-1 py-1' />
-                <button className='border border-black border-1 rounded-lg px-1 py-1'>Search</button>
-            </form>
+        <div>
+            <h1 className='text-4xl'>Search</h1>
+            <SearchForm inputValue={inputValue} setInputValue={setInputValue} handleSubmit={handleSubmit} />
 
-            <ul>
-                {dataSearch.map(el => (
-                    <li className='flex mx-3 my-3' key={el.id}>
-                        <Link
-                            style={{ textDecoration: 'none', color: 'black' }}
-                            to={`/movies/${el.id}`}
-                            state={location}
-                        >
-                            <img
-                                width={100}
-                                src={
-                                    el.poster_path
-                                        ? `https://image.tmdb.org/t/p/w500${el.poster_path}`
-                                        : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
-                                }
-                                alt=""
-                            />
-                        </Link>
-                        <Link
-                            className='text-black'
-                            to={`/movies/${el.id}`}
-                            state={location}
-                        >
-                            {el.title}
-                            <br />
-                            {el.release_date}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </>
+            <MovieList movies={dataSearch} location={location} />
+        </div>
     );
 };
 

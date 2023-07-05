@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom'
 import { getMovieDetails } from 'service/api';
-
+const defaultImg =
+    'https://st4.depositphotos.com/4320021/23631/v/450/depositphotos_236319394-stock-illustration-photo-coming-soon-picture-frame.jpg'
 const MovieDetails = () => {
     const { movieId } = useParams();
     const [movieDetails, setMovieDetails] = useState(null)
@@ -27,7 +28,7 @@ const MovieDetails = () => {
             <div key={movieDetails.id}>
                 <img
                     width={250}
-                    src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
+                    src={movieDetails.poster_path ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}` : defaultImg}
                     alt="Movie Poster"
                 />
                 <h1>

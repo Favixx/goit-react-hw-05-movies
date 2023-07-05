@@ -7,7 +7,7 @@ const Movies = lazy(() => import('../pages/Movies'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails'));
 const Cast = lazy(() => import('../pages/Cast'));
 const Reviews = lazy(() => import('../pages/Reviews'));
-const Header = lazy(() => import('../pages/Header'));
+const Header = lazy(() => import('./Header/Header'));
 const App = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
