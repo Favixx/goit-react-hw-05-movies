@@ -35,14 +35,14 @@ const Movies = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <input value={inputValue} onChange={handleChange} type="text" />
-                <button>Search</button>
+            <form onSubmit={handleSubmit} className='my-3'>
+                <input value={inputValue} onChange={handleChange} type="text" className='outline outline-black outline-1 mx-1 px-1 py-1' />
+                <button className='border border-black border-1 rounded-lg px-1 py-1'>Search</button>
             </form>
 
             <ul>
                 {dataSearch.map(el => (
-                    <li style={{ margin: '10px', display: 'flex' }} key={el.id}>
+                    <li className='flex mx-3 my-3' key={el.id}>
                         <Link
                             style={{ textDecoration: 'none', color: 'black' }}
                             to={`/movies/${el.id}`}
@@ -59,7 +59,7 @@ const Movies = () => {
                             />
                         </Link>
                         <Link
-                            style={{ textDecoration: 'none', color: 'black' }}
+                            className='text-black'
                             to={`/movies/${el.id}`}
                             state={location}
                         >

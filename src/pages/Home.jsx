@@ -25,7 +25,7 @@ const Home = () => {
 
     return (
         <div>
-            <h2>Trending today</h2>
+            <h2 className='mx-3 text-3xl'>Trending today</h2>
             <ListTrending apiMovies={movies} />
         </div>
     );

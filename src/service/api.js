@@ -48,7 +48,7 @@ export const getMovieDetails = async (movieId) => {
 
 export const getMovieCredits = async (movieId) => {
     try {
-        const response = await api.get(`/movies/${movieId}/credits`, {
+        const response = await api.get(`/movie/${movieId}/credits`, {
             params: {
                 api_key: API_KEY,
             },
@@ -61,9 +61,11 @@ export const getMovieCredits = async (movieId) => {
 
 export const getMovieReviews = async (movieId) => {
     try {
-        const response = await api.get(`/movies/${movieId}/reviews`, {
+        const response = await api.get(`/movie/${movieId}/reviews`, {
             params: {
                 api_key: API_KEY,
+                page: 1,
+                language: 'en-US'
             },
         });
         return response.data.results;
