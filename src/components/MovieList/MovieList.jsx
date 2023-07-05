@@ -1,10 +1,10 @@
 import MovieItem from 'components/MovieItem/MovieItem';
 import React from 'react';
-const MovieList = ({ movies, location }) => {
+const MovieList = ({ movies }) => {
     return (
         <ul>
             {movies.map(movie => (
-                <MovieItem movie={movie} location={location} key={movie.id} />
+                <MovieItem movie={movie} key={movie.id} />
             ))}
         </ul>
     );

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import { searchMovies } from 'service/api';
 import SearchForm from '../components/SearchForn/SearchForm'
@@ -9,7 +8,6 @@ const Movies = () => {
     const query = searchParams.get('query');
     const [inputValue, setInputValue] = useState(query || '');
     const [dataSearch, setDataSearch] = useState([]);
-    const location = useLocation();
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -33,7 +31,7 @@ const Movies = () => {
             <h1 className='text-4xl'>Search</h1>
             <SearchForm inputValue={inputValue} setInputValue={setInputValue} handleSubmit={handleSubmit} />
 
-            <MovieList movies={dataSearch} location={location} />
+            <MovieList movies={dataSearch} />
         </div>
     );
 };

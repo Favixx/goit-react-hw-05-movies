@@ -1,4 +1,4 @@
-import ListTrending from 'components/ListTrending/ListTrending';
+import MovieList from 'components/MovieList/MovieList';
 import React, { useState, useEffect } from 'react';
 import { getTrendingMovies } from 'service/api';
 
@@ -26,7 +26,7 @@ const Home = () => {
     return (
         <div>
             <h2 className='mx-3 text-3xl'>Trending today</h2>
-            <ListTrending apiMovies={movies} />
+            <MovieList movies={movies} />
         </div>
     );
 };

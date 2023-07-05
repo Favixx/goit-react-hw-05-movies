@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-const MovieItem = ({ movie, location }) => {
+import { Link, useLocation } from "react-router-dom";
+const MovieItem = ({ movie }) => {
+    const location = useLocation()
     return (
         <li className='flex mx-3 my-3' key={movie.id}>
             <Link
